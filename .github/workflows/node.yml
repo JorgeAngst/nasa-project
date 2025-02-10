@@ -8,9 +8,11 @@ jobs:
   build:
     env:
       CI: true
+      MONGO_URL: mongodb://localhost/nasa
     strategy:
       matrix:
         node-version: [ 16.x ]
+        mongodb_version: [ '6.9']
     runs-on: macos-latest
     steps: 
       - uses: actions/checkout@v2
@@ -18,6 +20,10 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+      - name: MongoDB in GitHub Actions
+        uses: supercharge/mongodb-github-action@1.12.0
+        with:
+          mongodb_version: ${{ matrix.mongodb-version }}
       - run: npm install
       - run: npm run build --prefix client
       - run: npm test
