@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         node-version: [ 16.x ]
-        mongodb_version: [ '6.9']
+        mongodb_version: [ '4.4']
     runs-on: macos-latest
     steps: 
       - uses: actions/checkout@v2
